@@ -1,3 +1,10 @@
+#_navSidebar a{
+    color: white;
+}
+#_navSidebar a:hover{
+    color: #ffffffbc;
+}
+
 a, a:hover{
     text-decoration: none;
 /*     color: white; */
