@@ -1,0 +1,15 @@
+a, a:hover{
+    text-decoration: none;
+/*     color: white; */
+}
+button:hover a{
+    color: white;
+}
+
+/* .sidebar{
+    width: 18rem;
+} */
+
+.card{
+    width: 18rem;
+}

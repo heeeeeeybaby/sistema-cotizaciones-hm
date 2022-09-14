@@ -1,3 +1,5 @@
+
+
 //Inicia el Simulador 
 const valorJornada = 80000;
 
