@@ -4,6 +4,9 @@
 #_navSidebar a:hover{
     color: #ffffffbc;
 }
+#_navToggleSidebar a{
+    color: gray;
+}
 
 a, a:hover{
     text-decoration: none;
@@ -17,6 +20,6 @@ button:hover a{
     width: 18rem;
 } */
 
-.card{
+/* .card{
     width: 18rem;
-}
+} */
