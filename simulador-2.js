@@ -75,16 +75,7 @@ function resultadoCamaras (camara) {
 }
 
 function resultadoMinutaje (minutaje){
-    let valorMinutaje; 
-    if(minutaje <= 1){
-        valorMinutaje = minutaje * valorJornada; 
-    }else if(minutaje > 1 && minutaje <= 3){
-        valorMinutaje = minutaje * (valorJornada * 1.5);
-    }else if(minutaje > 3 && minutaje <= 5){
-        valorMinutaje = minutaje * (valorJornada * 2);
-    }else if(minutaje > 5 && minutaje <= 7){
-        valorMinutaje = minutaje * (valorJornada * 2.2);
-    }else(valorMinutaje = minutaje *(valorJornada * (minutaje * 0.3)));
+    let valorMinutaje = minutaje *(valorJornada * (minutaje * 0.3));
     return valorMinutaje; 
 }
 
