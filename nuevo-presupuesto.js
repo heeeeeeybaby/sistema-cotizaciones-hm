@@ -44,7 +44,35 @@ formulario.addEventListener("submit", (e) =>{
     arrayClientes.push(cliente);
     console.log(arrayClientes);
     formulario.reset();
+    mostrarInfo(cliente); 
 
 });
+
+// Mostrar Info
+
+const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
+const mostrarInfo = (cliente) => {
+    let aux =""; 
+    aux += `<div class="col-lg-4 col-sm-6 col-10 mb-4">
+            <div class="card">
+                <div class="card-body bg-light">
+                    <h5 class="card-title">Presupuesto ${cliente.id}</h5>
+                    <p class="card-text text-secondary"><i class="bi bi-coin"></i>
+                        CLP 400.000</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted"><i class="bi bi-person-fill"></i>
+                    ${cliente.nombre}</li>
+                    <li class="list-group-item text-info"><i class="bi bi-building"></i> ${cliente.empresa}</li>
+                    <li class="list-group-item text-muted"> Enviado el 28 Sept 2022</li>                 
+                </ul>
+                <div class="card-body">
+                    <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
+                </div>
+            </div>
+            </div>`
+            cardPresupuesto.innerHTML = aux; 
+}
 
 
