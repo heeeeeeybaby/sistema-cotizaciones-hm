@@ -77,7 +77,7 @@ function mostrarInfo(clientes){
                             ${cliente.empresa}
                         </li>
                         <li class="list-group-item text-muted"> 
-                            ${cliente.fecha}
+                            Enviado el ${cliente.fecha.toLocaleDateString()}
                         </li>                 
                     </ul>
                     <div class="card-body">
@@ -89,7 +89,3 @@ function mostrarInfo(clientes){
         cardPresupuesto.innerHTML = aux; 
     });
 } 
-
-
-
-
