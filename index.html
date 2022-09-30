@@ -32,41 +32,40 @@
         <main id="_mainContent" class="container-fluid d-flex flex-column mx-0 px-0">
             <nav class="navbar sticky-top navbar-dark bg-light shadow-sm px-3">
                 <div class="container-fluid">
-                  <form class="d-flex d-none d-md-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Busca en Fluer..." aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                  </form>
-                  <button class="btn btn-outline-primary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"><i class="bi bi-list"></i></button>
-          
-                  <div class="offcanvas-md d-md-none offcanvas-start bg-light" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
-                  <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">FLUER</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                    <ul id="_navToggleSidebar" class="navbar-nav text-secondary">
-                        <li><a href="#">Dashboard</a></li>
-                        <hr>
-                        <small class="text-uppercase text-secondary text-opacity-75 d-block mb-3">Presupuestos</small>
-                        <li><a href="#">Nuevo Presupuesto</a></li>
-                        <li><a href="">Presupuestos Enviados</a></li>
-                        <li><a href="#">Borradores</a></li>
-                        <hr>
-                        <small class="text-uppercase text-secondary text-opacity-75 d-block mb-3">Clientes</small>
-                        <li><a href="#">Nuevo Cliente</a></li>
-                        <li><a href="#">Listado de Clientes</a></li>
-            
-                    </ul>
-                  </div>
-                  </div>
-                  <div class="border-start border-secondary px-2">
+                    <form class="d-flex d-none d-md-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Busca en Fluer..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    </form>
+                    <button class="btn btn-outline-primary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"><i class="bi bi-list"></i>
+                    </button>
+                    <div class="offcanvas-md d-md-none offcanvas-start bg-light" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">FLUER</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul id="_navToggleSidebar" class="navbar-nav text-secondary">
+                                <li><a href="#">Dashboard</a></li>
+                                <hr>
+                                <small class="text-uppercase text-secondary text-opacity-75 d-block mb-3">Presupuestos</small>
+                                <li><a href="#">Nuevo Presupuesto</a></li>
+                                <li><a href="">Presupuestos Enviados</a></li>
+                                <li><a href="#">Borradores</a></li>
+                                <hr>
+                                <small class="text-uppercase text-secondary text-opacity-75 d-block mb-3">Clientes</small>
+                                <li><a href="#">Nuevo Cliente</a></li>
+                                <li><a href="#">Listado de Clientes</a></li>
+                    
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border-start border-secondary px-2">
                     <button type="button" class="btn btn-primary position-relative">
                         <i class="bi bi-bell-fill"></i><span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
-                      </button>
+                    </button>
                     <img class="px-2 rounded-circle" src="https://picsum.photos/30/30" alt="">
                     <a class="text-secondary">John Doe</a>
-                  </div>
-
+                    </div>
                 </div>
             </nav>
             <div id="mainContainer" class="d-flex justify-content-between px-4 pt-5">
@@ -131,88 +130,12 @@
             </div>
             <div class="container my-5 px-4">
                 <div id="_cardsPresupuesto" class="row justify-content-center">
-                    <div class="col-lg-4 col-sm-6 col-10 mb-4">
-                        <div class="card">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">Diseño de Marca</h5>
-                                <p class="card-text text-secondary"><i class="bi bi-coin"></i>
-                                     CLP 400.000</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item text-muted"><i class="bi bi-person-fill"></i>
-                                    Pepito Pérez</li>
-                                <li class="list-group-item text-info"><i class="bi bi-building"></i> Acme Ltda</li>
-                                <li class="list-group-item text-muted"> Enviado el 28 Sept 2022</li>                 
-                            </ul>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                            </div>
-                        </div>
+                    <div id="_onboarding"class="col-7 mt-5 mx-auto text-center">
+                        <h5 class=" pt-5 mt-5 text-muted">Comienza creando tu primer presupuesto</h5>
+                        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i> Nuevo Presupuesto</button>
+                        
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-10 mb-4">
-                        <div class="card">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">Diseño de Marca</h5>
-                                <p class="card-text text-secondary"><i class="bi bi-coin"></i>
-                                     CLP 400.000</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
 
-                                <li class="list-group-item text-muted"><i class="bi bi-person-fill"></i>
-                                    Pepito Pérez</li>
-                                <li class="list-group-item text-info"><i class="bi bi-building"></i> Acme Ltda</li>
-                                <li class="list-group-item text-muted"> Enviado el 28 Sept 2022</li>                 
-
-
-                            </ul>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-10 mb-4">
-                        <div class="card">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">Diseño de Marca</h5>
-                                <p class="card-text text-secondary"><i class="bi bi-coin"></i>
-                                     CLP 400.000</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item text-muted"><i class="bi bi-person-fill"></i>
-                                    Pepito Pérez</li>
-                                <li class="list-group-item text-info"><i class="bi bi-building"></i> Acme Ltda</li>
-                                <li class="list-group-item text-muted"> Enviado el 28 Sept 2022</li>                 
-                            </ul>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-10 mb-4">
-                        <div class="card">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">Diseño de Marca</h5>
-                                <p class="card-text text-secondary"><i class="bi bi-coin"></i>
-                                     CLP 400.000</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item text-muted"><i class="bi bi-person-fill"></i>
-                                    Pepito Pérez</li>
-                                <li class="list-group-item text-info"><i class="bi bi-building"></i> Acme Ltda</li>
-                                <li class="list-group-item text-muted"> Enviado el 28 Sept 2022</li>                 
-
-
-                            </ul>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>

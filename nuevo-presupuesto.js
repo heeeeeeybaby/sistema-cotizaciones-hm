@@ -2,6 +2,7 @@
 
 const valorJornada = 80000;
 const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
+const onboarding = document.getElementById("_onboarding");
 
 
 // Define una clase para la Información del Cliente
@@ -20,14 +21,21 @@ class Cliente {
 let arrayClientes = []; 
 
 if(localStorage.getItem("presupuestos")){
+
     let presupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
     console.log(presupuesto);
+    
     for (let i = 0; i < presupuesto.length; i++){
         arrayClientes.push(presupuesto[i]);
         mostrarInfo(arrayClientes);
     } 
 }
-
+function onboardingCheck(){
+    if(arrayClientes.length >= 1){
+        console.log("Estoy leyendo esto");
+        onboarding.className = "d-none";
+    }
+}
 class Presupuesto{
     constructor(cantidad, jornada, camara, minutaje){
         this.cantidad = cantidad, 
@@ -63,10 +71,10 @@ formulario.addEventListener("submit", (e) =>{
     arrayClientes.push(cliente);
     //Agrego al localStorage
     localStorage.setItem("presupuestos", JSON.stringify(arrayClientes));
-
     //Limpio el form
     formulario.reset();
-/*     mostrarInfo(arrayClientes); */
+    onboardingCheck(); 
+    mostrarInfo(arrayClientes);
 
     //console.log(arrayClientes);
 
@@ -75,8 +83,8 @@ formulario.addEventListener("submit", (e) =>{
 // Mostrar Info
 
 function mostrarInfo(clientes){
+    onboardingCheck();
     clientes.forEach( cliente => {
-        cardPresupuesto.innerHTML = "";
         const div = document.createElement("div"); 
         div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
         div.innerHTML = `<div class="card">
