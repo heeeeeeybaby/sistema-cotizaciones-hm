@@ -23,10 +23,6 @@ class Presupuesto{
         this.jornada = jornada, 
         this.camara = camara,
         this.minutaje = minutaje
-    }
-    calcularPresupuesto() {
-        let presupuesto = valorJornada * (this.jornada + this.camara * 0.2 + (this.minutaje * this.cantidad * 0.3)); 
-        return presupuesto; 
     } 
 }
 
@@ -42,59 +38,70 @@ formulario.addEventListener("submit", (e) =>{
     const rut = document.getElementById("rutCliente"); 
     const empresa = document.getElementById("nombreEmpresa");
     const email = document.getElementById("emailCliente");
-    const jornada = Number(document.getElementById("cantJornadas")); 
-    const camara = +document.getElementById("cantCamaras");
-    const minutaje = Number(document.getElementById("minutaje"));
-    const cantidad = +document.getElementById("cantVideos");
+    const jornada = document.getElementById("cantJornadas"); 
+    const camara = document.getElementById("cantCamaras");
+    const minutaje = document.getElementById("minutaje");
+    const cantidad = document.getElementById("cantVideos");
 
     const presupuesto = new Presupuesto(cantidad.value, jornada.value, camara.value, minutaje.value); 
 
-    const resultado = typeof camara + typeof cantidad  + (cantidad + camara); 
+    const resultado = valorJornada * (jornada.value + (camara.value * 0.2) + (minutaje.value * cantidad.value * 0.3)); 
 
     const cliente = new Cliente(id, fecha, nombre.value, rut.value, empresa.value, email.value, resultado); 
 
     arrayClientes.push(cliente);
 
     formulario.reset();
+    mostrarInfo();
 
-    arrayClientes.forEach(cliente => mostrarInfo(cliente));
     console.log(arrayClientes);
 
 });
+
+
+// Calcular Presupuesto 
+
+/* function calcularPresupuesto(jornada, camara, minutaje, cantidad) {
+    let presupuesto = valorJornada * (jornada + camara * 0.2 + (minutaje * cantidad * 0.3)); 
+    return presupuesto; 
+} */
+
 
 // Mostrar Info
 
 const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
 
-function mostrarInfo(cliente){
-        let aux =""; 
-        aux += `<div class="col-lg-4 col-sm-6 col-10 mb-4">
-                <div class="card">
-                    <div class="card-body bg-light">
-                        <h5 class="card-title">Presupuesto ${cliente.id}</h5>
-                        <p class="card-text text-secondary">
-                            <i class="bi bi-coin"></i>
-                            CLP $${cliente.resultado}
-                        </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-muted">
-                            <i class="bi bi-person-fill"></i>
-                            ${cliente.nombre}
-                        </li>
-                        <li class="list-group-item text-info">
-                            <i class="bi bi-building"></i> 
-                            ${cliente.empresa}
-                        </li>
-                        <li class="list-group-item text-muted"> 
-                            Enviado el ${cliente.fecha}
-                        </li>                 
-                    </ul>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                    </div>
-                </div>
-                </div>`
-        cardPresupuesto.innerHTML = aux; 
-    };
+function mostrarInfo(){
+    arrayClientes.forEach( cliente => {
+        cardPresupuesto.innerHTML = "";
+        const div = document.createElement("div"); 
+        div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
+        div.innerHTML = `<div class="card">
+                            <div class="card-body bg-light">
+                                <h5 class="card-title">Presupuesto ${cliente.id}</h5>
+                                <p class="card-text text-secondary">
+                                    <i class="bi bi-coin"></i>
+                                    CLP $${cliente.resultado}
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-muted">
+                                    <i class="bi bi-person-fill"></i>
+                                    ${cliente.nombre}
+                                </li>
+                                <li class="list-group-item text-info">
+                                    <i class="bi bi-building"></i> 
+                                    ${cliente.empresa}
+                                </li>
+                                <li class="list-group-item text-muted"> 
+                                    Enviado el ${cliente.fecha}
+                                </li>                 
+                            </ul>
+                            <div class="card-body">
+                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
+                            </div>
+                        </div>`; 
+        cardPresupuesto.appendChild(div); 
+    })
+}
