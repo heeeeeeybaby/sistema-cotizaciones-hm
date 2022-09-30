@@ -1,5 +1,6 @@
 // Define constantes globales
-
+const { dinero } = window.dinero.js;
+const { CLP } = window['@dinero.js/currencies'];
 const valorJornada = 80000;
 const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
 const onboarding = document.getElementById("_onboarding");
@@ -7,6 +8,14 @@ const onboarding = document.getElementById("_onboarding");
 
 // Define una clase para la Información del Cliente
 
+class Presupuesto{
+    constructor(cantidad, jornada, camara, minutaje){
+        this.cantidad = cantidad, 
+        this.jornada = jornada, 
+        this.camara = camara,
+        this.minutaje = minutaje
+    } 
+}
 class Cliente {
     constructor(id, fecha, nombre, rut, empresa, email, resultado){
         this.id = id,
@@ -20,30 +29,13 @@ class Cliente {
 }
 let arrayClientes = []; 
 
-if(localStorage.getItem("presupuestos")){
-
-    let presupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
-    console.log(presupuesto);
-    
-    for (let i = 0; i < presupuesto.length; i++){
-        arrayClientes.push(presupuesto[i]);
-        mostrarInfo(arrayClientes);
-    } 
-}
 function onboardingCheck(){
     if(arrayClientes.length >= 1){
         console.log("Estoy leyendo esto");
         onboarding.className = "d-none";
     }
 }
-class Presupuesto{
-    constructor(cantidad, jornada, camara, minutaje){
-        this.cantidad = cantidad, 
-        this.jornada = jornada, 
-        this.camara = camara,
-        this.minutaje = minutaje
-    } 
-}
+
 
 // Procesa los datos del formulario
 const formulario = document.getElementById("formulario");
@@ -69,6 +61,8 @@ formulario.addEventListener("submit", (e) =>{
     const cliente = new Cliente(id, fecha, nombre.value, rut.value, empresa.value, email.value, resultado.toFixed(0)); 
 
     arrayClientes.push(cliente);
+
+
     //Agrego al localStorage
     localStorage.setItem("presupuestos", JSON.stringify(arrayClientes));
     //Limpio el form
@@ -84,6 +78,7 @@ formulario.addEventListener("submit", (e) =>{
 
 function mostrarInfo(clientes){
     onboardingCheck();
+    cardPresupuesto.innerHTML = "";
     clientes.forEach( cliente => {
         const div = document.createElement("div"); 
         div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
@@ -115,4 +110,16 @@ function mostrarInfo(clientes){
                 <div>`; 
         cardPresupuesto.appendChild(div);
     })
+}
+
+if(localStorage.getItem("presupuestos")){
+
+    let presupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
+    console.log(presupuesto);
+    
+    for (let i = 0; i < presupuesto.length; i++){
+        cardPresupuesto.innerHTML = "";
+        arrayClientes.push(presupuesto[i]);
+        mostrarInfo(arrayClientes);
+    } 
 }
