@@ -1,6 +1,8 @@
 // Define constantes globales
 
 const valorJornada = 80000;
+const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
+
 
 // Define una clase para la Información del Cliente
 
@@ -19,9 +21,11 @@ let arrayClientes = [];
 
 if(localStorage.getItem("presupuestos")){
     let presupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
+    console.log(presupuesto);
     for (let i = 0; i < presupuesto.length; i++){
         arrayClientes.push(presupuesto[i]);
-    }
+        mostrarInfo(arrayClientes);
+    } 
 }
 
 class Presupuesto{
@@ -62,7 +66,7 @@ formulario.addEventListener("submit", (e) =>{
 
     //Limpio el form
     formulario.reset();
-    mostrarInfo();
+/*     mostrarInfo(arrayClientes); */
 
     //console.log(arrayClientes);
 
@@ -70,39 +74,37 @@ formulario.addEventListener("submit", (e) =>{
 
 // Mostrar Info
 
-const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
-
-function mostrarInfo(){
-    arrayClientes.forEach( cliente => {
+function mostrarInfo(clientes){
+    clientes.forEach( cliente => {
         cardPresupuesto.innerHTML = "";
         const div = document.createElement("div"); 
         div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
         div.innerHTML = `<div class="card">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">Presupuesto ${cliente.id}</h5>
-                                <p class="card-text text-secondary">
-                                    <i class="bi bi-coin"></i>
-                                    CLP $${cliente.resultado}
-                                </p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item text-muted">
-                                    <i class="bi bi-person-fill"></i>
-                                    ${cliente.nombre}
-                                </li>
-                                <li class="list-group-item text-info">
-                                    <i class="bi bi-building"></i> 
-                                    ${cliente.empresa}
-                                </li>
-                                <li class="list-group-item text-muted"> 
-                                    Enviado el ${cliente.fecha}
-                                </li>                 
-                            </ul>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                            </div>
-                        </div>`; 
-        cardPresupuesto.appendChild(div); 
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Presupuesto ${cliente.id}</h5>
+                        <p class="card-text text-secondary">
+                            <i class="bi bi-coin"></i>
+                            CLP $${cliente.resultado}
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-muted">
+                            <i class="bi bi-person-fill"></i>
+                            ${cliente.nombre}
+                        </li>
+                        <li class="list-group-item text-info">
+                            <i class="bi bi-building"></i> 
+                            ${cliente.empresa} | RUT: ${cliente.rut}
+                        </li>
+                        <li class="list-group-item text-muted"> 
+                            Enviado el ${cliente.fecha}
+                        </li>                 
+                    </ul>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
+                    </div>
+                <div>`; 
+        cardPresupuesto.appendChild(div);
     })
 }
