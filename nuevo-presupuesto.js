@@ -17,6 +17,13 @@ class Cliente {
 }
 let arrayClientes = []; 
 
+if(localStorage.getItem("presupuestos")){
+    let presupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
+    for (let i = 0; i < presupuesto.length; i++){
+        arrayClientes.push(presupuesto[i]);
+    }
+}
+
 class Presupuesto{
     constructor(cantidad, jornada, camara, minutaje){
         this.cantidad = cantidad, 
@@ -45,27 +52,21 @@ formulario.addEventListener("submit", (e) =>{
 
     const presupuesto = new Presupuesto(cantidad.value, jornada.value, camara.value, minutaje.value); 
 
-    const resultado = valorJornada * (jornada.value + (camara.value * 0.2) + (minutaje.value * cantidad.value * 0.3)); 
+    const resultado = valorJornada * (jornada.value + (camara.value * 0.2) + (minutaje.value * cantidad.value)); 
 
-    const cliente = new Cliente(id, fecha, nombre.value, rut.value, empresa.value, email.value, resultado); 
+    const cliente = new Cliente(id, fecha, nombre.value, rut.value, empresa.value, email.value, resultado.toFixed(0)); 
 
     arrayClientes.push(cliente);
+    //Agrego al localStorage
+    localStorage.setItem("presupuestos", JSON.stringify(arrayClientes));
 
+    //Limpio el form
     formulario.reset();
     mostrarInfo();
 
-    console.log(arrayClientes);
+    //console.log(arrayClientes);
 
 });
-
-
-// Calcular Presupuesto 
-
-/* function calcularPresupuesto(jornada, camara, minutaje, cantidad) {
-    let presupuesto = valorJornada * (jornada + camara * 0.2 + (minutaje * cantidad * 0.3)); 
-    return presupuesto; 
-} */
-
 
 // Mostrar Info
 
