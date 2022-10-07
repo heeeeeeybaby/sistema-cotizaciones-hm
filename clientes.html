@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador</title>
+    <title>Cotizador - Clientes</title>
 
     <!--Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
             <hr>
             <small class="text-uppercase text-white text-opacity-75 d-block mb-3">Presupuestos</small>
             <li><a href="#">Nuevo Presupuesto</a></li>
-            <li><a href="">Presupuestos Enviados</a></li>
+            <li><a href="index.html">Presupuestos Enviados</a></li>
             <li><a href="#">Borradores</a></li>
             <hr>
             <small class="text-uppercase text-white text-opacity-75 d-block mb-3">Clientes</small>
@@ -69,14 +69,14 @@
                 </div>
             </nav>
             <div id="mainContainer" class="d-flex justify-content-between px-4 pt-5">
-                <h1 id="mainContainer_pageTitle" class="h3 mb-3 text-secondary">Presupuestos Enviados</h1>
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i> Nuevo Presupuesto</button>
+                <h1 id="mainContainer_pageTitle" class="h3 mb-3 text-secondary">Listado de Clientes</h1>
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i> Nuevo Cliente</button>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Presupuesto</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -90,8 +90,8 @@
                                     <input type="text" class="form-control" id="nombreEmpresa">
                                 </div>
                                 <div class="mb-3 col-md-12">
-                                    <label for="direccionCliente" class="form-label">Dirección</label>
-                                    <input type="text" class="form-control" id="direccionCliente">
+                                    <label for="nombreEmpresa" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="nombreEmpresa">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="rutCliente" class="form-label">RUT o DNI Cliente</label>
@@ -102,34 +102,7 @@
                                     <label for="emailCliente" class="form-label">Correo Electrónico</label>
                                     <input type="email" class="form-control" id="emailCliente">
                                 </div>
-
-                                <hr>
-                                <b>Ingresa Presupuesto</b>
-                                <div class="mb-3 col-md-6">
-                                    <label for="nombreProyecto" class="form-label">Nombre del Proyecto</label>
-                                    <input type="text" class="form-control" id="nombreProyecto">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="cantVideos" class="form-label">Cantidad de Videos</label>
-                                    <input type="number" class="form-control" id="cantVideos">
-                                    <div id="emailHelp" class="form-text">Sólo numeros</div>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="minutaje" class="form-label">Minutaje</label>
-                                    <input type="number" class="form-control" id="minutaje">
-                                    <div id="emailHelp" class="form-text">Sólo numeros</div>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="cantCamaras" class="form-label">Cámaras</label>
-                                    <input type="number" class="form-control" id="cantCamaras">
-                                    <div id="emailHelp" class="form-text">Sólo numeros</div>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="cantJornadas" class="form-label">Jornadas</label>
-                                    <input type="number" class="form-control" id="cantJornadas" aria-describedby="emailHelp">
-                                    <div id="emailHelp" class="form-text">Sólo numeros</div>
-                                </div>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Crear Presupuesto</button>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Crear Cliente</button>
                             </form>
                         </div>
                     </div>
@@ -137,18 +110,51 @@
                 </div>
             </div>
             <div class="container my-5 px-4">
-                <div id="_cardsPresupuesto" class="row justify-content-center">
+                <div id="_listaClientes" class="row justify-content-center">
                     <div class="onboarding col-7 mt-5 mx-auto text-center">
-                        <h5 class=" pt-5 mt-5 text-muted">Comienza creando tu primer presupuesto</h5>
-                        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i> Nuevo Presupuesto</button>
-                        
+                        <h5 class=" pt-5 mt-5 text-muted">Comienza ingresando tu primer cliente</h5>
+                        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus"></i> Nuevo Cliente</button>
+
+                    </div>
+                    <div class="col-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre Cliente</th>
+                                <th scope="col">Empresa</th>
+                                <th scope="col">RUT</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Presupuestos</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
             </div>
         </main>
     </div>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="main.js"></script>
     <!-- <script src="simulador-2.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
