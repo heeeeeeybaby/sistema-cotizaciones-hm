@@ -1,3 +1,4 @@
+// ***************** INITIAL SETUP *****************
 // Define constantes globales
 
 const arrayClientes = []; 
@@ -8,20 +9,17 @@ const cardPresupuesto = document.getElementById("_cardsPresupuesto");
 const listaClientes = document.getElementById("_listaClientes"); 
 const onboarding = document.getElementsByClassName("onboarding");
 
-//Verifica data
+//Verifica data en localStorage
 
 if(localStorage.getItem("presupuestos")){
 
     let localPresupuesto = JSON.parse(localStorage.getItem("presupuestos")); 
-    console.log(localPresupuesto);
-    
     for (let i = 0; i < localPresupuesto.length; i++){
         arrayPresupuestos.push(localPresupuesto[i]);
-        mostrarInfo(arrayPresupuestos);
     } 
-
+    mostrarInfo(arrayPresupuestos);
 }
-
+// ***************** MAIN CLASSES *****************
 // Define una clase para la Información del Cliente
 
 class Cliente {
@@ -40,41 +38,94 @@ class Cliente {
     }
 }
 
-class Presupuesto{
-
-        constructor(id, fecha, proyecto, jornada, camara, minutaje, cantidad, resultado, idCliente){
-            this.id = id,
-            this.fecha = fecha,
-            this.proyecto = proyecto, 
-            this.jornada = jornada, 
-            this.camara= camara, 
-            this.minutaje = minutaje, 
-            this.cantidad = cantidad, 
-            this.resultado = resultado, 
-            this.idCliente = idCliente
-        }
-        createId(){
-            this.id = Math.ceil(Math.random() * 1000);
-        }
+class Presupuesto extends Cliente{
+    constructor(id, fecha, proyecto, jornada, camara, minutaje, cantidad, resultado, idCliente){
+        super(); 
+        this.id = id,
+        this.fecha = fecha,
+        this.proyecto = proyecto, 
+        this.jornada = jornada, 
+        this.camara = camara, 
+        this.minutaje = minutaje, 
+        this.cantidad = cantidad, 
+        this.resultado = resultado, 
+        this.idCliente = idCliente
+    }
+    sumarTotal(){
+        this.resultado = (valorJornada * (this.jornada + (this.camara * 0.2) + (this.minutaje * this.cantidad)));
+    }
 }
+// ***************** UTILITY SHORT FUNCTIONS *****************
 
+// Quita pantalla de onboarding cuando hay contenido
     function onboardingCheck(){
         arrayClientes.length >= 1 && onboarding.className === "d-none";
     }
-    function alertOk(){
+
+// Muestra un alert al crear un nuevo presupuesto 
+    function alertOk(mensaje){
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Presupuesto Creado',
+            title: mensaje,
             showConfirmButton: false,
             timer: 1500
         })
     }
+// Muestra las cards con cada presupuesto en página de Presupuestos
+    function mostrarInfo(presupuestos){
+        onboardingCheck();
+        cardPresupuesto.innerHTML = "";
+        presupuestos.forEach( presupuesto => {
+            const div = document.createElement("div"); 
+            div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
+            div.innerHTML = `<div class="card">
+                        <div class="card-body bg-light">
+                            <div class="row justify-content-between">
+                                <div class="col-7 text-start">
+                                    <h5 class="card-title">${presupuesto.proyecto}</h5>
+                                    <span class="badge rounded-pill text-bg-success">Enviado el ${presupuesto.fecha}</span> 
+                                </div>
+                                <div class="col-5 text-end">
+                                    <button type="button" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>
+                                    <div class="mt-2">
+                                    <small class="card-text text-secondary">ID: ${presupuesto.id}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-muted">
+                                <i class="bi bi-coin"></i>
+                                Importe: $${presupuesto.resultado} CLP
+                            </li>
+                            <li class="list-group-item text-muted">
+                                <i class="bi bi-person-fill"></i>
+                                Nombre Cliente
+                            </li>
+                            <li class="list-group-item text-muted">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="bi bi-bar-chart"></i> 8
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+                                </div>                 
+                        </ul>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-info mb-2">Ver Presupuesto</button>
+                        </div>
+                    <div>`; 
+            cardPresupuesto.appendChild(div);
+        })
+    } 
 
-      
-// Procesa los datos del formulario
-const formulario = document.getElementById("formulario");
-formulario.addEventListener("submit", (e) =>{
+// ***************** CREAR PRESUPUESTO ***************** 
+// Procesa los datos del formulario de la página de Presupuestos
+
+const formularioPresupuesto = document.getElementById("formulario");
+formularioPresupuesto.addEventListener("submit", (e) =>{
 
     e.preventDefault();
 
@@ -87,37 +138,25 @@ formulario.addEventListener("submit", (e) =>{
 
 // clase PRESUPUESTO
     const fecha = new Date().toLocaleDateString();
-    const proyecto = document.getElementById("nombreProyecto");
-    const jornada = document.getElementById("cantJornadas"); 
-    const camara = document.getElementById("cantCamaras");
-    const minutaje = document.getElementById("minutaje");
-    const cantidad = document.getElementById("cantVideos");
+    const proyecto = document.getElementById("nombreProyecto").value;
+    const jornada = Number(document.getElementById("cantJornadas").value); 
+    const camara = Number(document.getElementById("cantCamaras").value);
+    const minutaje = Number(document.getElementById("minutaje").value);
+    const cantidad = Number(document.getElementById("cantVideos").value);
+    let resultado;
 
     const cliente = new Cliente(undefined, nombre.value, rut.value, empresa.value, direccion.value, email.value, presupuestosCliente);
+    
     cliente.createId(); 
     arrayClientes.push(cliente);
     const idCliente = cliente.id; 
-    const resultado = valorJornada * (jornada.value + (camara.value * 0.2) + (minutaje.value * cantidad.value));
 
-    const presupuesto = new Presupuesto(undefined, fecha, proyecto.value, jornada.value, camara.value, minutaje.value, cantidad.value, resultado.toFixed(0), idCliente);
+    const presupuesto = new Presupuesto(undefined, fecha, proyecto, jornada, camara, minutaje, cantidad, resultado, idCliente);
 
     presupuesto.createId(); 
+    presupuesto.sumarTotal(); 
     arrayPresupuestos.push(presupuesto); 
     presupuestosCliente.push(presupuesto.id);
-
-
-
-
- /*    function anexarPresupuesto(clientes, cliente){
-        if(clientes.find(id === cliente.id)){
-            cliente.presupuestosCliente.push(presupuesto);
-        }else{
-        cliente.presupuesto = []; 
-        cliente.presupuestosCliente.push(presupuesto);
-        }
-    }
-    anexarPresupuesto(arrayClientes, cliente);  */
-
 
     //Agrego al localStorage
     localStorage.setItem("clientes", JSON.stringify(arrayClientes));
@@ -125,51 +164,40 @@ formulario.addEventListener("submit", (e) =>{
 // Función: Que vaya a buscar el cliente con el ID que le pase por el presupuesto y guardarlo en una variable 
 
     //Limpio el form
-    formulario.reset();
-    alertOk(); 
+    formularioPresupuesto.reset();
+    alertOk("Presupuesto Creado"); 
     onboardingCheck(); 
     mostrarInfo(arrayPresupuestos);
 
 });
 
-// Mostrar Info
-
-  function mostrarInfo(presupuestos){
-    onboardingCheck();
-    cardPresupuesto.innerHTML = "";
-    presupuestos.forEach( presupuesto => {
-        const div = document.createElement("div"); 
-        div.className = "col-lg-4 col-sm-6 col-10 mb-4"; 
-        div.innerHTML = `<div class="card">
-                    <div class="card-body bg-light">
-                        <h5 class="card-title">Título</h5>
-                        <p class="card-text text-secondary">
-                            ID:${presupuesto.id}
-                            <i class="bi bi-coin"></i>
-                            CLP $${presupuesto.resultado}
-                        </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-info">
-                            <i class="bi bi-building"></i> 
-                            Empresa
-                        </li>
-                        <li class="list-group-item text-muted">
-                            <i class="bi bi-person-fill"></i>
-                           Nombre Cliente
-                        </li>
-
-                        <li class="list-group-item text-muted"> 
-                            Enviado el ${presupuesto.fecha}
-                        </li>                 
-                    </ul>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-info btn-sm mb-2">Enviar Presupuesto</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm mb-2">Editar</button>
-                    </div>
-                <div>`; 
-        cardPresupuesto.appendChild(div);
-    })
-} 
-
 // Listado Clientes
+
+const formularioClientes = document.getElementById("formularioCliente");
+formularioClientes.addEventListener("submit", (e) =>{
+
+    e.preventDefault();
+
+// Clase CLIENTE
+    const nombre = document.getElementById("nombreCliente"); 
+    const rut = document.getElementById("rutCliente"); 
+    const empresa = document.getElementById("nombreEmpresa");
+    const direccion = document.getElementById("direccionCliente");
+    const email = document.getElementById("emailCliente");
+
+    const cliente = new Cliente(undefined, nombre.value, rut.value, empresa.value, direccion.value, email.value, presupuestosCliente);
+    
+    cliente.createId(); 
+    arrayClientes.push(cliente);
+
+    //Agrego al localStorage
+    localStorage.setItem("clientes", JSON.stringify(arrayClientes));
+
+
+    //Limpio el form
+    formularioClientes.reset();
+    alertOk("Cliente Creado"); 
+    onboardingCheck(); 
+    //mostrarInfo(arrayPresupuestos);
+
+});
