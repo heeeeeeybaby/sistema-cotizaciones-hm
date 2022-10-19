@@ -1,0 +1,16 @@
+[
+    {"id":32, "nombre": "Armando Guerrero", "empresa": "Inmobiliaria Cuencas", "rut":768976543, "direccion":"Los Patitos 4343", "email":"a.guerrero@cuencas.cl"},
+    {"id":54, "nombre": "Cristián Aldunate", "empresa": "Transportes Arriagada", "rut":760897652, "direccion":"Los Patitos 4343", "email":""},
+    {"id":12, "nombre": "Fernando Rebolledo", "empresa": "ESTAPEX Limitada", "rut":752349982, "direccion":"Los Patitos 4343", "email":""},
+    {"id":45, "nombre": "Josefina Darlen", "empresa": "Darlen Abogados y Cía", "rut":752387566, "direccion":"Los Patitos 4343", "email":""},
+    {"id":8, "nombre": "Martina Fierro", "empresa": "Comercial MF Limitada", "rut":767989908, "direccion":"Los Patitos 4343", "email":""},
+    {"id":78, "nombre": "Rodrigo Guzmán", "empresa": "Impresiones Guzmán", "rut":767342313, "direccion":"Los Patitos 4343", "email":""},
+    {"id":65, "nombre": "Federico Quiroga", "empresa": "Trendly App SpA", "rut":750093458, "direccion":"Los Patitos 4343", "email":""},
+    {"id":21, "nombre": "Agustina Maldonado", "empresa": "Human Ltda", "rut":769984531, "direccion":"Los Patitos 4343", "email":""},
+    {"id":10, "nombre": "Bastián Domínguez", "empresa": "Banquetería La Rosa", "rut":772318673, "direccion":"Los Patitos 4343", "email":""},
+    {"id":2, "nombre": "Clara Arriagada", "empresa": "FlashCargo SpA", "rut":762845097, "direccion":"Los Patitos 4343", "email":""},
+    {"id":57, "nombre": "Felicia López", "empresa": "Constructora López SpA", "rut":7604959687, "direccion":"Los Patitos 4343", "email":""},
+    {"id":98, "nombre": "Jaime Gormaz", "empresa": "Escuela de sonido AUDIOTEC SpA", "rut":778984581, "direccion":"Los Patitos 4343", "email":""},
+    {"id":79, "nombre": "Leonardo Pizarro", "empresa": "Colegio Los Pastores", "rut":784768920, "direccion":"Los Patitos 4343", "email":""}
+
+]
