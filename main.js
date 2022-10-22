@@ -179,18 +179,15 @@ fetch(listadoClientes)
     .then(respuesta => respuesta.json())
     .then(datos => {
         datos.forEach(cliente => {
-            let contador = 1; 
-            listado.innerHTML += `
-            <tr>
-                <th scope="row">${contador}</th>
+            listado.innerHTML = 
+            `<tr>
+                <th scope="row">${cliente.id}</th>
                 <td>${cliente.nombre}</td>
                 <td>${cliente.empresa}</td>
                 <td>${cliente.rut}</td>
                 <td>${cliente.email}</td>
                 <td>${cliente.presupuestos}</td>
-            </tr>
-            `   
-            contador++;
+            </tr>`   
         })
         .catch(error => console.error(error))
         .finally(() => console.log("Proceso Finalizado"));
