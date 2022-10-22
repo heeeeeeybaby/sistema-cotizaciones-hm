@@ -5,9 +5,14 @@ const arrayClientes = [];
 const arrayPresupuestos = []; 
 const presupuestosCliente = []; 
 const valorJornada = 80000;
+const formularioClientes = document.getElementById("formularioCliente");
+const formularioPresupuesto = document.getElementById("formularioPresupuestos");
 const cardPresupuesto = document.getElementById("_cardsPresupuesto"); 
 const listaClientes = document.getElementById("_listaClientes"); 
 const onboarding = document.getElementsByClassName("onboarding");
+const listado = document.getElementById("_listadoClientes"); 
+const listadoClientes = "json/data.json"; 
+
 
 //Verifica data en localStorage
 
@@ -124,7 +129,6 @@ class Presupuesto extends Cliente{
 // ***************** CREAR PRESUPUESTO ***************** 
 // Procesa los datos del formulario de la página de Presupuestos
 
-const formularioPresupuesto = document.getElementById("formulario");
 formularioPresupuesto.addEventListener("submit", (e) =>{
 
     e.preventDefault();
@@ -170,40 +174,6 @@ formularioPresupuesto.addEventListener("submit", (e) =>{
     mostrarInfo(arrayPresupuestos);
 
 });
-
-// Listado Clientes
-
-const formularioClientes = document.getElementById("formularioCliente");
-formularioClientes.addEventListener("submit", (e) =>{
-
-    e.preventDefault();
-
-// Clase CLIENTE
-    const nombre = document.getElementById("nombreCliente"); 
-    const rut = document.getElementById("rutCliente"); 
-    const empresa = document.getElementById("nombreEmpresa");
-    const direccion = document.getElementById("direccionCliente");
-    const email = document.getElementById("emailCliente");
-
-    const cliente = new Cliente(undefined, nombre.value, rut.value, empresa.value, direccion.value, email.value, presupuestosCliente);
-    
-    cliente.createId(); 
-    arrayClientes.push(cliente);
-
-    //Agrego al localStorage
-    localStorage.setItem("clientes", JSON.stringify(arrayClientes));
-
-
-    //Limpio el form
-    formularioClientes.reset();
-    alertOk("Cliente Creado"); 
-    onboardingCheck(); 
-    //mostrarInfo(arrayPresupuestos);
-
-});
-
-const listado = document.getElementById("_listadoClientes"); 
-const listadoClientes = "json/data.json"; 
 
 fetch(listadoClientes)
     .then(respuesta => respuesta.json())
